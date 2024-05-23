@@ -1,0 +1,23 @@
+import tkinter as tk
+
+class PedometerApp:
+    def __init__(self, root):
+        self.root = root
+        self.root.title("만보기 어플")
+        
+        self.steps = 0
+        
+        self.label = tk.Label(root, text="걸음 수: 0", font=("Helvetica", 24))
+        self.label.pack(pady=20)
+        
+        self.button = tk.Button(root, text="걸음 추가", command=self.add_step, font=("Helvetica", 18))
+        self.button.pack(pady=20)
+        
+    def add_step(self):
+        self.steps += 1
+        self.label.config(text=f"걸음 수: {self.steps}")
+
+if __name__ == "__main__":
+    root = tk.Tk()
+    app = PedometerApp(root)
+    root.mainloop()
