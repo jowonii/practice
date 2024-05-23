@@ -1,0 +1,36 @@
+import tkinter as tk
+from tkinter import ttk
+
+class CoffeeKioskApp:
+    def __init__(self, root):
+        self.root = root
+        self.root.title("Coffee Kiosk App")
+        
+        self.coffee_var = tk.StringVar()
+        self.quantity_var = tk.IntVar()
+        
+        ttk.Label(root, text="Select Coffee:", font=("Helvetica", 16)).pack(pady=10)
+        self.coffee_combobox = ttk.Combobox(root, textvariable=self.coffee_var, state="readonly", font=("Helvetica", 16), values=["Americano", "Latte", "Espresso", "Cappuccino"])
+        self.coffee_combobox.pack(pady=10)
+        self.coffee_combobox.current(0)
+        
+        ttk.Label(root, text="Quantity:", font=("Helvetica", 16)).pack(pady=10)
+        self.quantity_entry = ttk.Entry(root, textvariable=self.quantity_var, font=("Helvetica", 16))
+        self.quantity_entry.pack(pady=10)
+        
+        self.order_button = ttk.Button(root, text="Order", command=self.place_order, style="Order.TButton")
+        self.order_button.pack(pady=20)
+        
+        self.order_summary_label = ttk.Label(root, text="", font=("Helvetica", 16))
+        self.order_summary_label.pack(pady=20)
+        
+    def place_order(self):
+        coffee = self.coffee_var.get()
+        quantity = self.quantity_var.get()
+        order_summary = f"You ordered {quantity} {coffee}(s)."
+        self.order_summary_label.config(text=order_summary)
+
+if __name__ == "__main__":
+    root = tk.Tk()
+    app = CoffeeKioskApp(root)
+    root.mainloop()
