@@ -1,0 +1,12 @@
+file_path = input("텍스트 파일 경로를 입력하세요: ")
+
+with open(file_path, 'r', encoding='utf-8') as file:
+    text = file.read()
+
+words = text.split()
+word_count = {}
+for word in words:
+    word_count[word] = word_count.get(word, 0) + 1
+
+for word, count in sorted(word_count.items(), key=lambda x: x[1], reverse=True):
+    print(f"{word}: {count}")
