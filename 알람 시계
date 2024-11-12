@@ -1,0 +1,13 @@
+import time
+import winsound  # Mac/Linux에서는 `os.system('say "Alarm!"')` 사용
+
+alarm_time = input("알람 시간을 설정하세요 (HH:MM 형식): ")
+print("알람이 설정되었습니다.")
+
+while True:
+    current_time = time.strftime("%H:%M")
+    if current_time == alarm_time:
+        print("알람 시간입니다!")
+        winsound.Beep(1000, 1000)  # 1초 동안 알람음
+        break
+    time.sleep(1)
